@@ -1,0 +1,40 @@
+name: terratest
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+  AWS_DEFAULT_REGION: "ap-southeast-1"
+  TERRATEST_IAM_ROLE: ${{ secrets.TERRAFORM_IAM_ROLE }}
+jobs:
+  terratest:
+    name: terratest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Set up Go (1.15)
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+        id: go
+      - name: prepare test environment
+        run: source ./test/prepare-test-environment.sh
+      - name: Get Go dependencies
+        run: |
+          go get -v -t -d ./...
+          if [ -f Gopkg.toml ]; then
+              curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+              dep ensure
+          fi
+      - name: Run 'go test -v -timeout 30m'
+        run: |
+          cd test
+          go test -v -timeout 30m
