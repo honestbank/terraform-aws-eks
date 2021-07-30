@@ -17,7 +17,11 @@
 #   * eks_instance_type: AWS EC2 instance type to run the nodes on. 
 #
 #   * map_users: A Map comprising of the AWS arn and username for individual users and the group they are to be added to. 
-
+#
+#   * map_roles: A Map comprising of the AWS arn and username for roles (service accounts or roles assumed using STS)
+#     that can access the cluster. This is included so the EKS dashboard (which is accessed via STS) can be viewed in
+#     the AWS console, and so we are able to edit the aws_auth config map which is "owned" by EKS, but not part of the
+#     EKS config itself, as it's applied to Kubernetes directly. Without access rights, we cannot edit this file.
 
 name               = "labs-test-vpc-deployment"
 kubernetes_version = 1.19
