@@ -22,7 +22,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 		},
 		map[string]interface{}{
 			"groups":   []string{"system:masters"},
-			"rolearn":  "arn:aws:iam::033245014990:user/peter.griffin",
+			"userarn":  "arn:aws:iam::033245014990:user/peter.griffin",
 			"username": "peter",
 		},
 		map[string]interface{}{ // Account for tests to run (ie. Github Actions, only)
