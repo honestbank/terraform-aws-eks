@@ -10,7 +10,6 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
   AWS_DEFAULT_REGION: "ap-southeast-1"
-  TERRATEST_IAM_ROLE: ${{ secrets.TERRAFORM_IAM_ROLE }}
 jobs:
   terratest:
     name: terratest
@@ -20,10 +19,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Set up Go (1.15)
+      - name: Set up Go (1.16)
         uses: actions/setup-go@v2
         with:
-          go-version: 1.15
+          go-version: 1.16
         id: go
       - name: prepare test environment
         run: source ./test/prepare-test-environment.sh

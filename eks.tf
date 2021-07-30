@@ -10,7 +10,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "17.1.0"
 
-  cluster_name    = "${var.name}-eks"
+  cluster_name    = var.name
   cluster_version = var.kubernetes_version
   subnets         = var.private_subnets
   vpc_id          = var.vpc_id
@@ -26,7 +26,8 @@ module "eks" {
   }
 
 
-  # map_users = iam 
+  map_users        = var.map_users
+  map_roles        = var.map_roles
   write_kubeconfig = false # No point writing it in the cloud, lets get it from AWS directly afterwards
   # kubeconfig_output_path = "./"
 }
