@@ -33,7 +33,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 	}
 
 	map_roles := []interface{}{
-		map[string]interface{}{
+		map[string]interface{}{ // Account for users assuming the cross-account role to be able to access the cluster and EKS dashboard
 			"groups":   []string{"system:masters"},
 			"rolearn":  "arn:aws:iam::106256755710:role/OrganizationAccountAccessRole",
 			"username": "cross-account",
