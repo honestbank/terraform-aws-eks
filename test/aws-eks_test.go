@@ -89,6 +89,11 @@ func TestTerraformAwsEKS(t *testing.T) {
 
 	result, err := svc.DescribeCluster(input)
 
+	if err != nil {
+		fmt.Println("Error Describing Cluster")
+		os.Exit(1)
+	}
+
 	// Validate Correct Cluster Name
 	assert.Equal(t, name, *result.Cluster.Name)
 
