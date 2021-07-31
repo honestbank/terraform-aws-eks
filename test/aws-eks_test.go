@@ -2,6 +2,7 @@ package test
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -72,6 +73,11 @@ func TestTerraformAwsEKS(t *testing.T) {
 	sess, err := session.NewSession(&aws.Config{
 		Region: aws.String("ap-southeast-1")},
 	)
+
+	if err != nil {
+		fmt.Println("Error Creating AWS Session: ", err)
+		os.Exit(1)
+	}
 
 	svc := eks.New(sess)
 
