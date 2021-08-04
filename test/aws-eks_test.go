@@ -18,7 +18,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 	t.Parallel()
 
 	name := fmt.Sprintf("labs-eks-terratest-%s", random.UniqueId())
-	private_subnets := []string{"subnet-05d6411aa893da0f5", "subnet-08f37f5a0bf4494e7", "subnet-0c4aff30b966be038"}
+	private_subnets := []string{"subnet-0e7ce3e4a44b7a4e5", "subnet-030c4ca8c404b8ec9"}
 	map_users := []interface{}{
 		map[string]interface{}{
 			"groups":   []string{"system:masters"},
@@ -51,7 +51,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 		Vars: map[string]interface{}{
 			"name":                 name,
 			"kubernetes_version":   "1.19",
-			"vpc_id":               "vpc-012c1acb51eb87c20", // Pre-provisioned test VPC, specifically for EKS tests.
+			"vpc_id":               "vpc-0a29b7562cfa2f8fb", // Pre-provisioned test VPC, specifically for EKS tests.
 			"private_subnets":      private_subnets,
 			"eks_min_capacity":     3,
 			"eks_max_capacity":     3,
