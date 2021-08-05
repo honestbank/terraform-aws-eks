@@ -19,31 +19,6 @@ func TestTerraformAwsEKS(t *testing.T) {
 
 	name := fmt.Sprintf("labs-eks-terratest-%s", random.UniqueId())
 	private_subnets := []string{"subnet-000f3cf76c4b7782f", "subnet-077774cfd19cc9c7a", "subnet-0b5dcfd951cfaa94b"}
-	map_users := []interface{}{
-		map[string]interface{}{
-			"groups":   []string{"system:masters"},
-			"userarn":  "arn:aws:iam::033245014990:user/jai",
-			"username": "jai",
-		},
-		map[string]interface{}{
-			"groups":   []string{"system:masters"},
-			"userarn":  "arn:aws:iam::033245014990:user/peter.griffin",
-			"username": "peter",
-		},
-		map[string]interface{}{ // Account for tests to run (ie. Github Actions, only)
-			"groups":   []string{"system:masters"},
-			"userarn":  "arn:aws:iam::106256755710:user/test-service-account",
-			"username": "test-service-account",
-		},
-	}
-
-	map_roles := []interface{}{
-		map[string]interface{}{ // Account for users assuming the cross-account role to be able to access the cluster and EKS dashboard
-			"groups":   []string{"system:masters"},
-			"rolearn":  "arn:aws:iam::106256755710:role/OrganizationAccountAccessRole",
-			"username": "cross-account",
-		},
-	}
 
 	workingDir := test_structure.CopyTerraformFolderToTemp(t, "../.", ".")
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -57,8 +32,6 @@ func TestTerraformAwsEKS(t *testing.T) {
 			"eks_max_capacity":     3,
 			"eks_desired_capacity": 3,
 			"eks_instance_type":    "m5.medium",
-			"map_roles":            map_roles,
-			"map_users":            map_users,
 		},
 		EnvVars: map[string]string{
 			"AWS_DEFAULT_REGION": "ap-southeast-1",
