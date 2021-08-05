@@ -4,7 +4,7 @@
 #
 # Name: labs-test-eks-deployment
 # As with the terrafrom-aws-vpc repo, the name could probably be better. The terraform builds an example EKS cluster in the "lab-compute" account in the Root > tf-testing > Compute Organization Unit in AWS.
-# The "labs" part is to signift which AWS account to find the EKS cluster inside.
+# The "labs" part is to signify which AWS account to find the EKS cluster inside.
 
 # Required Inputs:
 #   * Name: Name of the EKS cluster
@@ -32,12 +32,3 @@ eks_min_capacity     = 3
 eks_desired_capacity = 3
 eks_max_capacity     = 3
 eks_instance_type    = "m5.medium"
-
-map_users = [
-  { "groups" : ["system:masters"], "userarn" : "arn:aws:iam::033245014990:user/jai", "username" : "jai" },                    # jai
-  { "groups" : ["system:masters"], "userarn" : "arn:aws:iam::033245014990:user/peter.griffin", "username" : "peter.griffin" } # peter.griffin
-]
-
-map_roles = [
-  { "groups" : ["system:masters"], "rolearn" : "arn:aws:iam::106256755710:role/OrganizationAccountAccessRole", "username" : "cross-account" } # Cross Account Role
-]

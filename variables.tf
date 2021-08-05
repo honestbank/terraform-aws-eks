@@ -30,21 +30,3 @@ variable "kubernetes_version" {
 variable "vpc_id" {
   description = "AWS id for the VPC to install the EKS cluster in"
 }
-
-variable "map_users" {
-  description = "A map of type list that allocated users to K8s roles via their AWS ARN"
-  type = list(object({
-    groups   = list(string)
-    userarn  = string
-    username = string
-  }))
-}
-
-variable "map_roles" {
-  description = "A map of type list that allocated roles to K8s roles via their AWS ARN"
-  type = list(object({
-    groups   = list(string)
-    rolearn  = string
-    username = string
-  }))
-}
