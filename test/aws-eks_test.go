@@ -37,13 +37,13 @@ func TestTerraformAwsEKS(t *testing.T) {
 	// 	},
 	// }
 
-	map_roles := []interface{}{
-		map[string]interface{}{ // Account for users assuming the cross-account role to be able to access the cluster and EKS dashboard
-			"groups":   []string{"system:masters"},
-			"rolearn":  "arn:aws:iam::106256755710:role/OrganizationAccountAccessRole",
-			"username": "cross-account",
-		},
-	}
+	// map_roles := []interface{}{
+	// 	map[string]interface{}{ // Account for users assuming the cross-account role to be able to access the cluster and EKS dashboard
+	// 		"groups":   []string{"system:masters"},
+	// 		"rolearn":  "arn:aws:iam::106256755710:role/OrganizationAccountAccessRole",
+	// 		"username": "cross-account",
+	// 	},
+	// }
 
 	workingDir := test_structure.CopyTerraformFolderToTemp(t, "../.", ".")
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -56,9 +56,6 @@ func TestTerraformAwsEKS(t *testing.T) {
 			"eks_min_capacity":     3,
 			"eks_max_capacity":     3,
 			"eks_desired_capacity": 3,
-			"eks_instance_type":    "m5.medium",
-			"map_roles":            map_roles,
-			"map_users":            map_users,
 		},
 		EnvVars: map[string]string{
 			"AWS_DEFAULT_REGION": "ap-southeast-1",
