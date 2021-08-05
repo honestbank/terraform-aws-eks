@@ -20,10 +20,6 @@ This code is presented as a module, and requires the following inputs:
     * EKS Instance Type: EC2 instance type to install K8s onto
     * Map Users: A Map used by EKS (as a ConfigMap) to allocated users to roles
 
-## Tests
-
-To run a simple test, review and run the `$ run.sh` script.
-
 ## Cavaet
 
 As this is a standalone module, it makes no effort to install or prepare a VPC. A VPC must be allocated for the tests to run. A dedicated test VPC has been set up and is the `$ run.sh` script connects to that to build.
