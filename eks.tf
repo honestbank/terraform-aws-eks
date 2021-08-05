@@ -1,12 +1,19 @@
-data "aws_eks_cluster" "eks-cluster" {
-  name = module.eks.cluster_id
+data "aws_eks_cluster" "eks_cluster" {
+  name = module.amazon_eks.cluster_id
 }
 
-data "aws_eks_cluster_auth" "eks-cluster" {
-  name = module.eks.cluster_id
+data "aws_eks_cluster_auth" "eks_cluster" {
+  name = module.amazon_eks.cluster_id
 }
 
-module "eks" {
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.eks_cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks_cluster.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster.eks_cluster.token
+  load_config_file       = false
+}
+
+module "amazon_eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "17.1.0"
 
@@ -34,19 +41,4 @@ module "eks" {
     { "groups" : ["system:masters"], "rolearn" : "arn:aws:iam::106256755710:role/OrganizationAccountAccessRole", "username" : "cross-account" } # Cross Account Role
   ]
 
-  # kubeconfig_output_path = "./"
-}
-
-data "aws_eks_cluster" "default" {
-  name = module.eks.cluster_id
-}
-
-data "aws_eks_cluster_auth" "default" {
-  name = module.eks.cluster_id
-}
-
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.default.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.default.token
 }
