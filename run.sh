@@ -6,5 +6,4 @@ export AWS_SECRET_ACCESS_KEY="<AWS SECRET ACCESS KEY>"
 export AWS_DEFAULT_REGION="<REGION>"
 
 terraform apply -var-file=test.tfvars
-pause
 terraform destroy -var-file=test.tfvars
