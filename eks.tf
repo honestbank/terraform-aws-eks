@@ -1,3 +1,11 @@
+data "aws_eks_cluster" "eks-cluster" {
+  name = module.amazon_eks.cluster_id
+}
+
+data "aws_eks_cluster_auth" "eks-cluster" {
+  name = module.amazon_eks.cluster_id
+}
+
 module "amazon_eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "17.1.0"
