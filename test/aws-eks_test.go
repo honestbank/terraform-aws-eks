@@ -1,12 +1,8 @@
 package test
 
 import (
-	"fmt"
-	"os"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 )
@@ -25,15 +21,4 @@ func TestTerraformAwsEKS(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 
 	terraform.InitAndApply(t, terraformOptions)
-
-	// Set up AWS Session with AWS Go SDK
-	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String("ap-southeast-1")},
-	)
-
-	if err != nil {
-		fmt.Println("Error Creating AWS Session: ", err)
-		os.Exit(1)
-	}
-
 }
