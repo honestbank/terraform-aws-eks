@@ -31,4 +31,4 @@ private_subnets    = ["subnet-05d6411aa893da0f5", "subnet-08f37f5a0bf4494e7", "s
 eks_min_capacity     = 3
 eks_desired_capacity = 3
 eks_max_capacity     = 3
-eks_instance_type    = "m5.medium"
+eks_instance_type    = "m5.large"

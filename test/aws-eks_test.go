@@ -31,7 +31,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 			"eks_min_capacity":     3,
 			"eks_max_capacity":     3,
 			"eks_desired_capacity": 3,
-			"eks_instance_type":    "m5.medium",
+			"eks_instance_type":    "m5.large",
 		},
 		EnvVars: map[string]string{
 			"AWS_DEFAULT_REGION": "ap-southeast-1",
