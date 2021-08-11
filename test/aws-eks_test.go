@@ -23,16 +23,6 @@ func TestTerraformAwsEKS(t *testing.T) {
 	workingDir := test_structure.CopyTerraformFolderToTemp(t, "../.", ".")
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		TerraformDir: workingDir,
-		Vars: map[string]interface{}{
-			"name":                 name,
-			"kubernetes_version":   "1.19",
-			"vpc_id":               "vpc-0fc178a397554ab75", // Pre-provisioned test VPC, specifically for EKS tests.
-			"private_subnets":      private_subnets,
-			"eks_min_capacity":     3,
-			"eks_max_capacity":     3,
-			"eks_desired_capacity": 3,
-			"eks_instance_type":    "m5.large",
-		},
 		EnvVars: map[string]string{
 			"AWS_DEFAULT_REGION": "ap-southeast-1",
 		},
