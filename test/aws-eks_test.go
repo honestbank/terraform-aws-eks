@@ -25,7 +25,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 		TerraformDir: workingDir,
 		Vars: map[string]interface{}{
 			"name":                 name,
-			"kubernetes_version":   "1.19",
+			"kubernetes_version":   "1.20",
 			"vpc_id":               "vpc-0fc178a397554ab75", // Pre-provisioned test VPC, specifically for EKS tests.
 			"private_subnets":      private_subnets,
 			"eks_min_capacity":     3,
