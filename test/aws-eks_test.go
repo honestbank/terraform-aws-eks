@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/eks"
+	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	test_structure "github.com/gruntwork-io/terratest/modules/test-structure"
 	"github.com/stretchr/testify/assert"
@@ -41,20 +42,6 @@ func TestTerraformAwsEKS(t *testing.T) {
 	svc := eks.New(sess)
 
 	endpoint := terraform.Output(t, terraformOptions, "eks-cluster-endpoint")
-
-	input := &eks.DescribeClusterInput{
-		Name: aws.String(name),
-	}
-
-	result, err := svc.DescribeCluster(input)
-
-	if err != nil {
-		fmt.Println("Error Describing Cluster")
-		os.Exit(1)
-	}
-
-	// Validate Correct Cluster Name
-	assert.Equal(t, name, *result.Cluster.Name)
 
 	// Validate Correct Cluster Endpoint
 	assert.Equal(t, endpoint, *result.Cluster.Endpoint)
