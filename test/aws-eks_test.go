@@ -32,6 +32,18 @@ func TestTerraformAwsEKS(t *testing.T) {
 			"eks_max_capacity":     3,
 			"eks_desired_capacity": 3,
 			"eks_instance_type":    "m5.large",
+			"map_users": []map[string]interface{}{
+				{
+					"userarn": "arn:aws:iam::033245014990:user/peter.griffin",
+					"username": "peter.griffin",
+					"groups": []string{"system:masters"},
+				},
+				{
+					"userarn": "arn:aws:iam::033245014990:user/jai",
+					"username": "jai",
+					"groups": []string{"system:masters"},
+				},
+			},
 		},
 		EnvVars: map[string]string{
 			"AWS_DEFAULT_REGION": "ap-southeast-1",
@@ -73,4 +85,5 @@ func TestTerraformAwsEKS(t *testing.T) {
 	// Validate Correct Cluster Endpoint
 	assert.Equal(t, endpoint, *result.Cluster.Endpoint)
 
+	// TODO: Validate aws-auth ConfigMap entries
 }

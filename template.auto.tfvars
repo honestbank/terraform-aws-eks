@@ -1,10 +1,22 @@
-cluster_name = "labs-eks-terratest-eks-cluster"
-aws_vpc_name = "labs-eks-terratest"
-aws_region = "ap-southeast-1"
-vpc_id = "vpc-0fc178a397554ab75" // Pre-provisioned test VPC, specifically for EKS tests.
-private_subnets = [ "subnet-000f3cf76c4b7782f", "subnet-077774cfd19cc9c7a", "subnet-0b5dcfd951cfaa94b" ]
-kubernetes_version = "1.20"
-eks_min_capacity = 1
-eks_max_capacity = 1
+cluster_name         = "labs-eks-terratest-eks-cluster"
+aws_vpc_name         = "labs-eks-terratest"
+aws_region           = "ap-southeast-1"
+vpc_id               = "vpc-0fc178a397554ab75" // Pre-provisioned test VPC, specifically for EKS tests.
+private_subnets      = ["subnet-000f3cf76c4b7782f", "subnet-077774cfd19cc9c7a", "subnet-0b5dcfd951cfaa94b"]
+kubernetes_version   = "1.20"
+eks_min_capacity     = 1
+eks_max_capacity     = 1
 eks_desired_capacity = 1
-eks_instance_type = "m5.large"
+eks_instance_type    = "m5.large"
+map_users = [
+  {
+    userarn  = "arn:aws:iam::033245014990:user/peter.griffin"
+    username = "peter.griffin"
+    groups   = ["system:masters"]
+  },
+  {
+    userarn  = "arn:aws:iam::033245014990:user/jai"
+    username = "jai"
+    groups   = ["system:masters"]
+  },
+]

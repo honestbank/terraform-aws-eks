@@ -21,9 +21,9 @@ module "amazon_eks" {
       max_capacity     = var.eks_max_capacity
       min_capacity     = var.eks_min_capacity
 
-      instance_types = [ var.eks_instance_type ]
+      instance_types = [var.eks_instance_type]
     }
   }
 
-  manage_aws_auth = false
+  map_users = var.map_users
 }
