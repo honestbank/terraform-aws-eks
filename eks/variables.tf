@@ -27,6 +27,15 @@ variable "kubernetes_version" {
   description = "version of K8s to install in the cluster"
 }
 
+variable "map_users" {
+  description = "Additional IAM users to add to the aws-auth configmap."
+  type = list(object({
+    userarn  = string
+    username = string
+    groups   = list(string)
+  }))
+}
+
 variable "vpc_id" {
   description = "AWS id for the VPC to install the EKS cluster in"
 }
