@@ -42,7 +42,7 @@ jobs:
       - name: release
         uses: cycjimmy/semantic-release-action@v2
         env:
-          GH_TOKEN: ${{ secrets.ENGINEERING_GITHUB_PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           extra_plugins: |
             @semantic-release/git@7.0.18
