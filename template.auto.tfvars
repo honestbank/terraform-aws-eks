@@ -13,8 +13,8 @@ eks_desired_capacity = 1
 eks_instance_type    = "m5.large"
 map_users = [
   {
-    userarn  = "arn:aws:iam::033245014990:user/peter.griffin"
-    username = "peter.griffin"
+    userarn  = "arn:aws:iam::033245014990:user/art"
+    username = "art"
     groups   = ["system:masters"]
   },
   {
@@ -22,4 +22,14 @@ map_users = [
     username = "jai"
     groups   = ["system:masters"]
   },
+  {
+    userarn  = "arn:aws:iam::033245014990:user/peter.griffin"
+    username = "peter.griffin"
+    groups   = ["system:masters"]
+  },
+  {
+    userarn  = "arn:aws:iam::033245014990:user/poom"
+    username = "poom"
+    groups   = ["system:masters"]
+  }
 ]
