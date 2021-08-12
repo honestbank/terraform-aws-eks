@@ -1,3 +1,6 @@
+# These variables are test values used to run this module independently for manual testing and CI runs.
+# This root folder should not be included in parent modules. Root modules should source the /eks folder directly.
+
 cluster_name         = "labs-eks-terratest-eks-cluster"
 aws_vpc_name         = "labs-eks-terratest"
 aws_region           = "ap-southeast-1"
