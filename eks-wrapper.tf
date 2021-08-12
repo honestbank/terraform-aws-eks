@@ -31,4 +31,6 @@ module "eks" {
   eks_max_capacity     = var.eks_max_capacity
   eks_desired_capacity = var.eks_desired_capacity
   eks_instance_type    = var.eks_instance_type
+
+  map_users = var.map_users
 }

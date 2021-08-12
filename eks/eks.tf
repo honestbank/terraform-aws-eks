@@ -16,4 +16,6 @@ module "amazon_eks" {
       instance_types = [var.eks_instance_type]
     }
   }
+
+  map_users = var.map_users
 }
