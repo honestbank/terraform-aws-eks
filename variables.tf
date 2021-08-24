@@ -26,6 +26,9 @@ variable "eks_min_capacity" {
   description = "Minimum allowed number of nodes"
 }
 
+variable "enable_irsa" {
+  description = "Enable IAM roles for service accounts (IRSA). Enabling this provisions and configures an OpenID connect provider for EKS"
+}
 
 variable "kubernetes_version" {
   description = "version of K8s to install in the cluster"

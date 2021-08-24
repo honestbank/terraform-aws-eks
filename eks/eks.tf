@@ -35,6 +35,7 @@ module "amazon_eks" {
   cluster_version = var.kubernetes_version
   subnets         = var.private_subnets
   vpc_id          = var.vpc_id
+  enable_irsa     = var.enable_irsa
 
   node_groups = {
     first = {

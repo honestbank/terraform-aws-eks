@@ -50,10 +50,14 @@ module "eks" {
 
   kubernetes_version = var.kubernetes_version
 
+  enable_irsa          = var.enable_irsa
+
   eks_min_capacity     = var.eks_min_capacity
   eks_max_capacity     = var.eks_max_capacity
   eks_desired_capacity = var.eks_desired_capacity
   eks_instance_type    = var.eks_instance_type
 
   map_users = var.map_users
+
+
 }
