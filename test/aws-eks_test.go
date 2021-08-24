@@ -32,6 +32,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 			"eks_max_capacity":     3,
 			"eks_desired_capacity": 3,
 			"eks_instance_type":    "m5.large",
+			"enable_irsa": true,
 			"map_users": []map[string]interface{}{
 				{
 					"userarn": "arn:aws:iam::033245014990:user/peter.griffin",

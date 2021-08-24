@@ -11,7 +11,7 @@ eks_min_capacity     = 1
 eks_max_capacity     = 1
 eks_desired_capacity = 1
 eks_instance_type    = "m5.large"
-enable_irsa = true
+enable_irsa          = true
 map_users = [
   {
     userarn  = "arn:aws:iam::033245014990:user/peter.griffin"
