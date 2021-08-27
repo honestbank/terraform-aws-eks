@@ -58,6 +58,4 @@ module "eks" {
   eks_instance_type    = var.eks_instance_type
 
   map_users = var.map_users
-
-
 }

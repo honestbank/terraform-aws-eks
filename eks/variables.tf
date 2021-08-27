@@ -1,14 +1,9 @@
-variable "name" {
-  description = "Name allocated to the EKS cluster"
-}
-
-variable "private_subnets" {
-  description = "A list of AWS subnet Ids, used to deploy the EKS cluster"
-  type        = list(string)
-}
-
 variable "eks_desired_capacity" {
   description = "Number of desired nodes"
+}
+
+variable "eks_instance_type" {
+  description = "EC2 instance type to install K8s on to"
 }
 
 variable "eks_max_capacity" {
@@ -17,10 +12,6 @@ variable "eks_max_capacity" {
 
 variable "eks_min_capacity" {
   description = "Minimum allowed number of nodes"
-}
-
-variable "eks_instance_type" {
-  description = "EC2 instance type to install K8s on to"
 }
 
 variable "enable_irsa" {
@@ -38,6 +29,15 @@ variable "map_users" {
     username = string
     groups   = list(string)
   }))
+}
+
+variable "name" {
+  description = "Name allocated to the EKS cluster"
+}
+
+variable "private_subnets" {
+  description = "A list of AWS subnet Ids, used to deploy the EKS cluster"
+  type        = list(string)
 }
 
 variable "vpc_id" {
