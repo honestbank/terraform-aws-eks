@@ -27,7 +27,7 @@ variable "eks_min_capacity" {
 }
 
 variable "enable_irsa" {
-  description = "Enable IAM roles for service accounts (IRSA). Enabling this provisions and configures an OpenID connect provider for EKS"
+  description = "Enable IRSA (IAM Roles for Service Accounts). Enabling this provisions and configures an OIDC (OpenID Connect) provider for in the EKS cluster"
 }
 
 variable "kubernetes_version" {
