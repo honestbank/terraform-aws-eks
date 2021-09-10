@@ -32,7 +32,7 @@ func TestTerraformAwsEKS(t *testing.T) {
 			"eks_max_capacity":     3,
 			"eks_desired_capacity": 3,
 			"eks_instance_type":    "m5.large",
-			"enable_irsa": true
+			"enable_irsa": true,
 			"map_roles": []map[string]interface{}{
 				{
 					"rolearn": "arn:aws:iam::124994850539:role/OrganizationAccountAccessRole",
