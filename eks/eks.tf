@@ -2,12 +2,10 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.52.0"
     }
 
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.4.1"
     }
   }
 }
@@ -18,13 +16,6 @@ data "aws_eks_cluster" "eks-cluster" {
 
 data "aws_eks_cluster_auth" "eks-cluster" {
   name = module.amazon_eks.cluster_id
-}
-
-provider "kubernetes" {
-  host = data.aws_eks_cluster.eks-cluster.endpoint
-
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.eks-cluster.token
 }
 
 module "amazon_eks" {
