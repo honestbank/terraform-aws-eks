@@ -24,3 +24,11 @@ map_users = [
     groups   = ["system:masters"]
   },
 ]
+
+map_roles = [
+  {
+    rolearn  = "arn:aws:iam::124994850539:role/OrganizationAccountAccessRole"
+    username = "service-account"
+    groups   = ["system:masters"]
+  },
+]
