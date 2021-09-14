@@ -40,7 +40,6 @@ data "aws_eks_cluster_auth" "eks" {
   name = module.eks.cluster_id
 }
 
-
 module "eks" {
   source = "./eks"
   name   = "${var.aws_vpc_name}-eks-cluster"
@@ -58,4 +57,6 @@ module "eks" {
   eks_instance_type    = var.eks_instance_type
 
   map_users = var.map_users
+  map_roles = var.map_roles
+
 }
