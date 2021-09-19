@@ -13,6 +13,11 @@ output "cluster_oidc_issuer_url" {
   value       = module.eks.cluster_oidc_issuer_url
 }
 
+output "cluster_primary_security_group_id" {
+  description = "The primary cluster Security Group"
+  value       = module.eks.cluster_primary_security_group_id
+}
+
 output "eks-cluster-endpoint" {
   description = "The URI of the cluster endpoint, used for Admin tasks, i.e Kubectl"
   value       = module.eks.eks-cluster-endpoint
