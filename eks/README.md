@@ -46,8 +46,8 @@ No requirements.
 | <a name="input_eks_min_capacity"></a> [eks\_min\_capacity](#input\_eks\_min\_capacity) | Minimum allowed number of nodes | `any` | n/a | yes |
 | <a name="input_enable_irsa"></a> [enable\_irsa](#input\_enable\_irsa) | Enable IRSA (IAM Roles for Service Accounts). Enabling this provisions and configures an OIDC (OpenID Connect) provider for in the EKS cluster | `any` | n/a | yes |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | version of K8s to install in the cluster | `any` | n/a | yes |
-| <a name="input_map_roles"></a> [map\_roles](#input\_map\_roles) | Additional IAM roles to add to the aws-auth-configmap. | <pre>list(object({<br>    rolearn = string<br>    username = string<br>    groups = list(string)<br>  }))</pre> | n/a | yes |
-| <a name="input_map_users"></a> [map\_users](#input\_map\_users) | Additional IAM users to add to the aws-auth configmap. | <pre>list(object({<br>    userarn  = string<br>    username = string<br>    groups   = list(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_map_roles"></a> [map\_roles](#input\_map\_roles) | Additional IAM roles to add to the aws-auth-configmap. | <pre>list(object({<br>    rolearn  = string<br>    username = string<br>    groups   = list(string)<br>  }))</pre> | `[]` | no |
+| <a name="input_map_users"></a> [map\_users](#input\_map\_users) | Additional IAM users to add to the aws-auth configmap. | <pre>list(object({<br>    userarn  = string<br>    username = string<br>    groups   = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name allocated to the EKS cluster | `any` | n/a | yes |
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | A list of AWS subnet Ids, used to deploy the EKS cluster | `list(string)` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | AWS id for the VPC to install the EKS cluster in | `any` | n/a | yes |
