@@ -18,6 +18,11 @@ output "cluster_primary_security_group_id" {
   value       = module.eks.cluster_primary_security_group_id
 }
 
+output "cluster_security_group_id" {
+  description = "A Security Group attached to the EKS cluster, shown as 'Additional security groups' in the EKS console"
+  value       = module.eks.cluster_security_group_id
+}
+
 output "eks-cluster-endpoint" {
   description = "The URI of the cluster endpoint, used for Admin tasks, i.e Kubectl"
   value       = module.eks.eks-cluster-endpoint
