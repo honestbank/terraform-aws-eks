@@ -7,8 +7,10 @@ on:
     branches:
       - main
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  # Credentials (web console): https://console.aws.amazon.com/iam/home#/users/tf-sa-terraform-aws-eks
+  # Credentials (1Password): https://start.1password.com/open/i?a=VXS5N4NL2JFYXPI7UPCI6VQCGQ&v=h72tpqyhfbnfsavtj2bvhpegc4&i=4vqaxl6jgralpgdq6yitdohcma&h=honestbank.1password.com
+  AWS_ACCESS_KEY_ID: ${{ secrets.TF_SA_TERRAFORM_AWS_EKS_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_KEY: ${{ secrets.TF_SA_TERRAFORM_AWS_EKS_AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: "ap-southeast-1"
 jobs:
   test_and_release_job:
