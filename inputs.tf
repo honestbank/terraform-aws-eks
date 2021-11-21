@@ -57,6 +57,12 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "public_subnets" {
+  description = "A list of public subnet IDs"
+  type        = list(string)
+  default     = []
+}
+
 variable "vpc_id" {
   description = "The VPC Id of the AWS VPC to install the EKS cluster into"
 }

@@ -47,8 +47,14 @@ variable "name" {
 }
 
 variable "private_subnets" {
-  description = "A list of AWS subnet Ids, used to deploy the EKS cluster"
+  description = "A list of private subnet IDs"
   type        = list(string)
+}
+
+variable "public_subnets" {
+  description = "A list of public subnet IDs"
+  type        = list(string)
+  default     = []
 }
 
 variable "vpc_id" {
