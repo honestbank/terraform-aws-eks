@@ -13,15 +13,20 @@ For background info on this repo and its functionality at a higher level, see th
 > `terraform-docs markdown ./ >> README.md` in the folder root.
 >
 ---
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.52 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.4 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.52.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.74.0 |
 
 ## Modules
 
@@ -33,8 +38,12 @@ No requirements.
 
 | Name | Type |
 |------|------|
+| [aws_kms_key.eks_node_ebs_encryption_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
+| [aws_launch_template.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_eks_cluster.eks-cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 | [aws_eks_cluster_auth.eks-cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
+| [aws_iam_policy_document.ebs_decryption](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
@@ -60,6 +69,9 @@ No requirements.
 | <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id) | Tied to the internal cluster\_id of the AWS EKS module |
 | <a name="output_cluster_oidc_issuer_url"></a> [cluster\_oidc\_issuer\_url](#output\_cluster\_oidc\_issuer\_url) | The URL on the EKS cluster OIDC Issuer |
 | <a name="output_cluster_primary_security_group_id"></a> [cluster\_primary\_security\_group\_id](#output\_cluster\_primary\_security\_group\_id) | The primary cluster Security Group |
+| <a name="output_cluster_security_group_id"></a> [cluster\_security\_group\_id](#output\_cluster\_security\_group\_id) | A Security Group attached to the EKS cluster, shown as 'Additional security groups' in the EKS console |
 | <a name="output_eks-cluster-endpoint"></a> [eks-cluster-endpoint](#output\_eks-cluster-endpoint) | The URI of the cluster endpoint, used for Admin tasks, i.e Kubectl |
 | <a name="output_eks-cluster-token"></a> [eks-cluster-token](#output\_eks-cluster-token) | Token to access the EKS cluster |
+| <a name="output_eks_node_ebs_encryption_key_arn"></a> [eks\_node\_ebs\_encryption\_key\_arn](#output\_eks\_node\_ebs\_encryption\_key\_arn) | ARN of the auto-created KMS key used to encrypt/decrypt the cluster worker nodes' EBS volumes. |
 | <a name="output_oidc_provider_arn"></a> [oidc\_provider\_arn](#output\_oidc\_provider\_arn) | The ARN of the OIDC Provider if `enable_irsa = true` |
+<!-- END_TF_DOCS -->

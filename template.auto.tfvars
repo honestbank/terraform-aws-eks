@@ -14,21 +14,10 @@ eks_instance_type    = "m5.large"
 enable_irsa          = true
 map_users = [
   {
-    userarn  = "arn:aws:iam::033245014990:user/peter.griffin"
-    username = "peter.griffin"
-    groups   = ["system:masters"]
-  },
-  {
     userarn  = "arn:aws:iam::033245014990:user/jai.govindani"
     username = "jai"
     groups   = ["system:masters"]
   },
 ]
 
-map_roles = [
-  {
-    rolearn  = "arn:aws:iam::124994850539:role/OrganizationAccountAccessRole"
-    username = "service-account"
-    groups   = ["system:masters"]
-  },
-]
+map_roles = []

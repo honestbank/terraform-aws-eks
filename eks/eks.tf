@@ -1,15 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-
-    kubernetes = {
-      source = "hashicorp/kubernetes"
-    }
-  }
-}
-
 data "aws_eks_cluster" "eks-cluster" {
   name = module.amazon_eks.cluster_id
 }
@@ -34,7 +22,8 @@ module "amazon_eks" {
       max_capacity     = var.eks_max_capacity
       min_capacity     = var.eks_min_capacity
 
-      instance_types = [var.eks_instance_type]
+      launch_template_id      = aws_launch_template.default.id
+      launch_template_version = aws_launch_template.default.default_version
     }
   }
 
