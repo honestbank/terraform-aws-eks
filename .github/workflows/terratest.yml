@@ -7,8 +7,8 @@ on:
     branches:
       - main
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.TERRATEST_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_KEY: ${{ secrets.TERRATEST_AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: "ap-southeast-1"
 jobs:
   test_and_release_job:
@@ -39,12 +39,13 @@ jobs:
           cd test
           go test -v -timeout 30m
 
-      - name: release
+      - name: Release
+        if: github.event_name == 'push'
         uses: cycjimmy/semantic-release-action@v2
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           extra_plugins: |
-            @semantic-release/git@7.0.18
-            @semantic-release/exec@3.3.8
-            @semantic-release/changelog@3.0.0
+            @semantic-release/git@10.0.1
+            @semantic-release/exec@6.0.3
+            @semantic-release/changelog@6.0.1

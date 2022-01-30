@@ -1,15 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-
-    kubernetes = {
-      source = "hashicorp/kubernetes"
-    }
-  }
-}
-
 data "aws_eks_cluster" "eks-cluster" {
   name = module.amazon_eks.cluster_id
 }
@@ -28,13 +16,20 @@ module "amazon_eks" {
   vpc_id          = var.vpc_id
   enable_irsa     = var.enable_irsa
 
+  # This is a fix/workaround needed for
+  # https://github.com/terraform-aws-modules/terraform-aws-eks/issues/1386
+  node_groups_defaults = {
+    instance_types = [var.eks_instance_type]
+  }
+
   node_groups = {
     first = {
       desired_capacity = var.eks_desired_capacity
       max_capacity     = var.eks_max_capacity
       min_capacity     = var.eks_min_capacity
 
-      instance_types = [var.eks_instance_type]
+      launch_template_id      = aws_launch_template.default.id
+      launch_template_version = aws_launch_template.default.default_version
     }
   }
 

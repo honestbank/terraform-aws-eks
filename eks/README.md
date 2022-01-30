@@ -6,22 +6,24 @@ The root of the repo contains a [wrapper](/terraform-aws-eks-wrapper.tf) that al
 of the module on [Terraform Cloud](https://app.terraform.io).
 
 For background info on this repo and its functionality at a higher level, see the [repo readme](/README.md).
+
 ---
 
->
-> To regenerate this section, delete everything under the horizontal divider below and run
-> `terraform-docs markdown ./ >> README.md` in the folder root.
->
----
+To update the docs below run `make docs`.
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.52 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.4 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.52.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.74.0 |
 
 ## Modules
 
@@ -33,8 +35,12 @@ No requirements.
 
 | Name | Type |
 |------|------|
+| [aws_kms_key.eks_node_ebs_encryption_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
+| [aws_launch_template.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_eks_cluster.eks-cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 | [aws_eks_cluster_auth.eks-cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster_auth) | data source |
+| [aws_iam_policy_document.ebs_decryption](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
@@ -44,6 +50,8 @@ No requirements.
 | <a name="input_eks_instance_type"></a> [eks\_instance\_type](#input\_eks\_instance\_type) | EC2 instance type to install K8s on to | `any` | n/a | yes |
 | <a name="input_eks_max_capacity"></a> [eks\_max\_capacity](#input\_eks\_max\_capacity) | Max allowed number of nodes | `any` | n/a | yes |
 | <a name="input_eks_min_capacity"></a> [eks\_min\_capacity](#input\_eks\_min\_capacity) | Minimum allowed number of nodes | `any` | n/a | yes |
+| <a name="input_eks_worker_node_ebs_volume_size"></a> [eks\_worker\_node\_ebs\_volume\_size](#input\_eks\_worker\_node\_ebs\_volume\_size) | The EBS volume size used in the Launch Template for worker nodes. | `number` | `100` | no |
+| <a name="input_eks_worker_node_ebs_volume_type"></a> [eks\_worker\_node\_ebs\_volume\_type](#input\_eks\_worker\_node\_ebs\_volume\_type) | The EBS volume type used in the Launch Template for worker nodes. | `string` | `"gp2"` | no |
 | <a name="input_enable_irsa"></a> [enable\_irsa](#input\_enable\_irsa) | Enable IRSA (IAM Roles for Service Accounts). Enabling this provisions and configures an OIDC (OpenID Connect) provider for in the EKS cluster | `any` | n/a | yes |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | version of K8s to install in the cluster | `any` | n/a | yes |
 | <a name="input_map_roles"></a> [map\_roles](#input\_map\_roles) | Additional IAM roles to add to the aws-auth-configmap. | <pre>list(object({<br>    rolearn  = string<br>    username = string<br>    groups   = list(string)<br>  }))</pre> | `[]` | no |
@@ -60,6 +68,10 @@ No requirements.
 | <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id) | Tied to the internal cluster\_id of the AWS EKS module |
 | <a name="output_cluster_oidc_issuer_url"></a> [cluster\_oidc\_issuer\_url](#output\_cluster\_oidc\_issuer\_url) | The URL on the EKS cluster OIDC Issuer |
 | <a name="output_cluster_primary_security_group_id"></a> [cluster\_primary\_security\_group\_id](#output\_cluster\_primary\_security\_group\_id) | The primary cluster Security Group |
+| <a name="output_cluster_security_group_id"></a> [cluster\_security\_group\_id](#output\_cluster\_security\_group\_id) | A Security Group attached to the EKS cluster, shown as 'Additional security groups' in the EKS console |
 | <a name="output_eks-cluster-endpoint"></a> [eks-cluster-endpoint](#output\_eks-cluster-endpoint) | The URI of the cluster endpoint, used for Admin tasks, i.e Kubectl |
 | <a name="output_eks-cluster-token"></a> [eks-cluster-token](#output\_eks-cluster-token) | Token to access the EKS cluster |
+| <a name="output_eks_cluster_worker_node_launch_template_id"></a> [eks\_cluster\_worker\_node\_launch\_template\_id](#output\_eks\_cluster\_worker\_node\_launch\_template\_id) | The ID of the Launch Template used for the EKS cluster's worker nodes. |
+| <a name="output_eks_node_ebs_encryption_key_arn"></a> [eks\_node\_ebs\_encryption\_key\_arn](#output\_eks\_node\_ebs\_encryption\_key\_arn) | ARN of the auto-created KMS key used to encrypt/decrypt the cluster worker nodes' EBS volumes. |
 | <a name="output_oidc_provider_arn"></a> [oidc\_provider\_arn](#output\_oidc\_provider\_arn) | The ARN of the OIDC Provider if `enable_irsa = true` |
+<!-- END_TF_DOCS -->
