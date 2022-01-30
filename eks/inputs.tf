@@ -14,6 +14,20 @@ variable "eks_min_capacity" {
   description = "Minimum allowed number of nodes"
 }
 
+variable "eks_worker_node_ebs_volume_size" {
+  description = "The EBS volume size used in the Launch Template for worker nodes."
+  # A very rare exception of adding a default value. PVCs are generally used rather than actual volumes,
+  # so this should have low impact. Needs to be deprecated and removed.
+  default = 100
+}
+
+variable "eks_worker_node_ebs_volume_type" {
+  description = "The EBS volume type used in the Launch Template for worker nodes."
+  # A very rare exception of adding a default value. PVCs are generally used rather than actual volumes,
+  # so this should have low impact. Needs to be deprecated and removed.
+  default = "gp2"
+}
+
 variable "enable_irsa" {
   description = "Enable IRSA (IAM Roles for Service Accounts). Enabling this provisions and configures an OIDC (OpenID Connect) provider for in the EKS cluster"
 }

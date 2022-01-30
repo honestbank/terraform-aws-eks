@@ -7,8 +7,8 @@ on:
     branches:
       - main
 env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.TERRATEST_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_KEY: ${{ secrets.TERRATEST_AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: "ap-southeast-1"
 jobs:
   test_and_release_job:

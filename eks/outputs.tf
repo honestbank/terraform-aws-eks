@@ -23,6 +23,11 @@ output "cluster_security_group_id" {
   value       = module.amazon_eks.cluster_security_group_id
 }
 
+output "eks_node_ebs_encryption_key_arn" {
+  description = "ARN of the auto-created KMS key used to encrypt/decrypt the cluster worker nodes' EBS volumes."
+  value       = aws_kms_key.eks_node_ebs_encryption_key.arn
+}
+
 output "eks-cluster-endpoint" {
   description = "The URI of the cluster endpoint, used for Admin tasks, i.e Kubectl"
   value       = data.aws_eks_cluster.eks-cluster.endpoint
@@ -37,4 +42,9 @@ output "eks-cluster-token" {
 output "oidc_provider_arn" {
   description = "The ARN of the OIDC Provider if `enable_irsa = true`"
   value       = module.amazon_eks.oidc_provider_arn
+}
+
+output "eks_cluster_worker_node_launch_template_id" {
+  description = "The ID of the Launch Template used for the EKS cluster's worker nodes."
+  value       = aws_launch_template.default.id
 }

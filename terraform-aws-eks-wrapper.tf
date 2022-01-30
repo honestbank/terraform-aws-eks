@@ -8,7 +8,7 @@ data "aws_eks_cluster_auth" "eks" {
 
 module "eks" {
   source = "./eks"
-  name   = "${var.aws_vpc_name}-eks-cluster"
+  name   = var.cluster_name
 
   vpc_id          = var.vpc_id
   private_subnets = var.private_subnets
