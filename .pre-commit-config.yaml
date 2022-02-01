@@ -13,6 +13,6 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
-      - id: terraform_validate # Disabled due to flakiness
-#      - id: terraform_tfsec # Temporarily disabled due to PSP warnings on GKE
-#      - id: checkov # Disabled due to crashing
+      - id: terraform_validate
+      - id: terraform_tfsec
+      - id: checkov

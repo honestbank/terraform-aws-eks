@@ -1,0 +1,3 @@
+[submodule "test/modules/terraform-aws-vpc"]
+	path = test/modules/terraform-aws-vpc
+	url = https://github.com/Honestbank/terraform-aws-vpc.git
