@@ -1,0 +1,33 @@
+# yamllint disable rule:line-length
+# Use template from https://github.com/honestbank/workflows/tree/main/examples/repository-workflows
+---
+name: "repository-shiftleft-terraform"
+permissions: read-all
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+      - test
+      - dev
+      - qa
+      - prod
+      - main
+  push:
+    branches:
+      - test
+      - dev
+      - qa
+      - prod
+      - main
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # schedule a job to run every day at 17:30 UTC
+    - cron: '30 17 * * *'
+
+jobs:
+  repository-shiftleft-terraform:
+    name: repository-shiftleft-terraform
+    uses: honestbank/workflows/.github/workflows/shared-terraform-shiftleft.yaml@main
+    with:
+      repo_name: ${{ github.event.repository.name }}
+    secrets: inherit
