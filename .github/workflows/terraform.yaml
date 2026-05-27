@@ -4,6 +4,8 @@ on:
     # This workflow is meant for public Terraform module repositories
     # which are generally component modules that follow trunk-based development.
     branches: [main]
+permissions:
+  contents: read
 jobs:
   terraform:
     name: "terraform"
